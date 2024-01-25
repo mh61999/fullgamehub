@@ -1,18 +1,16 @@
-import { Flex, Heading, Input, Spacer, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
-import ColorSwitch from './ColorSwitch'
-
+import {auth} from '../services/firebaseConfig'
 const Navbar = () => {
-  const inputbg = useColorModeValue('gray.100', 'gray.700');
-  return (
-    <Flex p={1} gap={5} pos='fixed' zIndex='10' w='100%' h='40px'>
-        <Heading size='lg'>GameApp</Heading>
-        <Spacer/>
-        <Input bg={inputbg} placeholder='search here' size='md' />
-        <Spacer/>
-        <ColorSwitch />
-    </Flex>
-  )
+    
+    const logoutAction = async () => {
+        auth.signOut()
+    }
+    return (
+        <nav className="navbar navbar-light bg-light ">
+            <span className="navbar-brand mb-0 h1">Navbar</span>
+            <button onClick={logoutAction} className='btn btn-outline-danger'>Logout</button>
+        </nav>
+    )
 }
 
 export default Navbar

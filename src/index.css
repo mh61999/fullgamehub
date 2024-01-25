@@ -1,0 +1,31 @@
+html,
+body {
+  background-color: #00cc99;
+}
+
+h1.title {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 200;
+}
+
+.form-label {
+  color: #ffffff;
+}
+
+.loginbtn {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.sidebar {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+.sidenav{
+  text-decoration: none;
+}
+.sidenav.active{
+  background-color: #00cc99;
+}

@@ -1,31 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom'
-import { auth } from './services/firebaseConfig'
-import { onAuthStateChanged } from 'firebase/auth'
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
+import React from 'react'
+import { Grid, GridItem, Show } from '@chakra-ui/react'
+import Navbar from './components/Navbar'
+import Gamelist from './components/Gamelist'
+import Genrelist from './components/Genrelist'
+
 
 const App = () => {
 
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user)
-      } else {
-        setUser(null)
-      }
-    })
-  }, [])
-
   return (
-    <Router>
-     <Routes>
-      <Route path='/'>{user? <Navigate to={'/dashboard'}></Navigate> : <Login/>}</Route>
-      <Route path='/dashboard' element={Dashboard}></Route>
-     </Routes>
-    </Router>
+    <Grid templateAreas={{base: `"nav" "main"`, lg: `"nav nav" "aside main"`}}>
+      <GridItem area='nav'>
+        <Navbar />
+      </GridItem>
+      <Show above='lg'>
+        <GridItem area='aside'>
+          <Genrelist />
+        </GridItem>
+      </Show>
+      <GridItem area='main'>
+        <Gamelist />
+      </GridItem>
+    </Grid>
   )
 }
 
